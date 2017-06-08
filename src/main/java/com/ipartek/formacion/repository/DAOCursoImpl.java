@@ -42,8 +42,11 @@ public class DAOCursoImpl implements DAOCurso{
 	private static final String SQL_GET_ALL = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` ORDER BY `id` DESC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` WHERE `id` = ?";
 	private static final String SQL_INSERT = "INSERT INTO `curso` (`nom_curso`, `cod_curso`) VALUES (?,?);";
-	private static final String SQL_UPDATE = "UPDATE `curso` SET `nom_curso`= ?, `cod_curso`= ? `id`= ? ;";
+	private static final String SQL_UPDATE = "UPDATE `curso` SET `nom_curso`= ?, `cod_curso`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `curso` WHERE `id` = ?;";
+	private static final String SQL_GET_LAST_10 = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` ORDER BY `id` DESC LIMIT 10;";
+	
+	private static final String SQL_SEARCH = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` WHERE nom_curso LIKE ? OR cod_curso LIKE ?  LIMIT 500;";
 	
 	@Override()
 	public List<Curso> getAll() {
@@ -51,7 +54,7 @@ public class DAOCursoImpl implements DAOCurso{
 		try {
 			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_GET_ALL, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen usuarios todavia");
+			this.logger.warn("No existen cursos todavia");
 		} catch (Exception e) {
 			this.logger.error(e.getMessage());
 		}
@@ -59,12 +62,39 @@ public class DAOCursoImpl implements DAOCurso{
 	}
 
 	@Override()
+	public List<Curso> getLastTen() {
+		ArrayList<Curso> lista = new ArrayList<Curso>();
+		try {
+			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_GET_LAST_10, new CursoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			this.logger.warn("No existen cursos todavia");
+		} catch (Exception e) {
+			this.logger.error(e.getMessage());
+		}
+		return lista;
+	}
+	
+	@Override()
+	public List<Curso> search(String value) {
+		ArrayList<Curso> lista = new ArrayList<Curso>();
+		value = '%'+value+'%';
+		try {
+			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_SEARCH, new Object[] { value , value }, new CursoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			this.logger.warn("No existen cursos todavia");
+		} catch (Exception e) {
+			this.logger.error(e.getMessage());
+		}
+		return lista;
+	}
+	
+	@Override()
 	public Curso getById(long id) {
 		Curso c = null;
 		try {
 			c = this.jdbcTemplate.queryForObject(SQL_GET_BY_ID, new Object[] { id }, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen el usuario");
+			this.logger.warn("No existe el curso");
 		} catch (Exception e) {
 			this.logger.error(e.getMessage());
 		}

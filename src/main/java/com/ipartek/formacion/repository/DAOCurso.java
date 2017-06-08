@@ -19,4 +19,9 @@ public interface DAOCurso {
 	boolean update(Curso c);
 
 	boolean delete(long id);
+
+	List<Curso> getLastTen();
+
+	List<Curso> search(String value);
+
 }

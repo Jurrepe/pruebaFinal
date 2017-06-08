@@ -21,6 +21,16 @@ public class ServiceCursoImpl implements ServiceCurso {
 	}
 
 	@Override()
+	public List<Curso> listarUltimos() {
+		return this.daoCurso.getLastTen();
+	}
+	
+	@Override()
+	public List<Curso> buscar(String valor) {
+		return this.daoCurso.search(valor);
+	}
+	
+	@Override()
 	public Curso buscarPorId(long id) {
 		return this.daoCurso.getById(id);
 	}

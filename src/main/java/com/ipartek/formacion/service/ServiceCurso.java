@@ -16,5 +16,9 @@ public interface ServiceCurso {
 	
 	boolean eliminar(long id);
 
+	List<Curso> listarUltimos();
+
+	List<Curso> buscar(String valor);
+
 
 }
