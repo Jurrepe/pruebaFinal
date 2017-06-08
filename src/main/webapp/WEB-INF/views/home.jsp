@@ -16,7 +16,7 @@
 <ul>
 <c:forEach items="${cursos}" var="c">
 	<li>
-		${c.nombre} - ${c.cod} 
+		<a href="view/${c.id}">${c.nombre}</a> - ${c.cod} 
 	</li>	
 </c:forEach>
 </ul>

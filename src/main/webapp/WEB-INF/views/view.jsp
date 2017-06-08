@@ -1,5 +1,5 @@
 <%@ include file="includes/header.jsp" %>
-
+<a href="/formacion">Volver</a>
 <c:if test="${not empty curso}">
 	<h1>${curso.nombre}</h1>
 	
