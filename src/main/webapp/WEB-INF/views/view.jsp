@@ -1,9 +1,10 @@
 <%@ include file="includes/header.jsp" %>
-<a href="/formacion">Volver</a>
+<a class="btn btn-default" href="/formacion">Volver</a>
 <c:if test="${not empty curso}">
-	<h1>${curso.nombre}</h1>
+	<h1 class="titulo">Detalle del curso</h1>
+	<h3 class="list-group-item"><Strong>Nombre:</Strong> ${curso.nombre}</h3>
+	<h3 class="list-group-item"><Strong>Código:</Strong> ${curso.cod}</h3>
 	
-	<span>Codigo: ${curso.cod}</span>
 	
 </c:if>
 <c:if test="${empty curso}">

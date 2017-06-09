@@ -12,25 +12,21 @@
 			<form:form action="admin/curso/crear" modelAttribute="curso">
 				<label>Id:</label>
 				<form:input class="form-control" path="id" readonly="true"/><br>
-				<label>Nombre:</label>
+				<label>Nombre:</label> <form:errors path="nombre" cssStyle="color:red;"/>
 				<form:input class="form-control" path="nombre"/><br>
-				<form:errors path="nombre" cssStyle="color:red;"/><br><br>
-				<label>Código:</label>
+	
+				<label>Código:</label> <form:errors path="cod" cssStyle="color:red;"/>
 				<form:input class="form-control" path="cod"/><br>
-				<form:errors path="cod" cssStyle="color:red;"/><br><br>
 				<c:choose>
 					<c:when test="${curso.id == -1}">
 						<form:button type="submit" class="btn btn-primary margin1">Crear</form:button>
 					</c:when>
 					<c:otherwise>
 						<form:button type="submit" class="btn btn-primary margin1">Modificar</form:button>
+						<span><a href="admin/curso/eliminar/${curso.id}" class="btn btn-danger">Eliminar</a></span>
 					</c:otherwise>
 				</c:choose>
-			</form:form>
-			
-			<form:form action="admin/curso/eliminar" modelAttribute="curso">
-				<form:hidden path="id"/>
-				<form:button type="submit" class="btn btn-danger">Eliminar</form:button>
+				
 			</form:form>
 		</div>
 		<div class="col-md-3"></div>

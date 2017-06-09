@@ -33,4 +33,26 @@ $(function() {
       }
     } );
   
+  $( "#buscadorAdminCurso" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+          url: "/formacion/api/curso/?filtro=" + $("#buscadorAdminCurso").val(),
+          dataType: "json",
+          success: function( data ) {
+        	var aString = [];
+            $.each(data, function(index, cur){
+            	aString.push({"label":cur.nombre, "value":cur.id});
+        	});
+            response( aString );
+          }
+        } );
+      },
+      minLength: 3,
+      select: function( event, ui ) {
+        console.debug( "Selected: " + ui.item.value + " id " + ui.item.label );
+        var url = "admin/curso/edit/"+ ui.item.value;
+        window.location.href = url;
+      }
+    } );
+  
 });

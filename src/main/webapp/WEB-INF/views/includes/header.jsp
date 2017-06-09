@@ -27,6 +27,9 @@
 	        <li class="active"><a href="#">Home <span class="sr-only">Pagina principal</span></a></li>
 	        <li><a href="admin">Admin</a></li>
 	   </ul>
+	   <div class="nav navbar-nav navbar-right">
+	  		<img class="logoHeader" src="resources/img/logo-ipartek.png" alt="Logo de la empresa Ipartek">
+	  </div>
 	  </div>
 	</nav>
 	</div>

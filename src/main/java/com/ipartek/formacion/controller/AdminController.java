@@ -29,6 +29,13 @@ public class AdminController {
 		
 		return "/admin/index";
 	}
+	
+	@RequestMapping(value = "/admin/curso/migracion", method = RequestMethod.GET)
+	public String migracion(Model model) {
+
+
+		return "admin/migracion";
+	}
 
 	@RequestMapping(value = "/admin/curso/edit", method = RequestMethod.GET)
 	public String formularioCrear(Model model) {
@@ -66,10 +73,10 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value = "/admin/curso/eliminar", method = RequestMethod.POST)
-	public String eliminar(Model model, Curso u) {
+	@RequestMapping(value = "/admin/curso/eliminar/{id}", method = RequestMethod.GET)
+	public String eliminar(Model model, @PathVariable() int id) {
 		String msg = "Error al eliminar el curso";
-		if (this.serviceCurso.eliminar(u.getId())) {
+		if (this.serviceCurso.eliminar(id)) {
 			msg = "Curso eliminado correctamente";
 		}
 		model.addAttribute("msg", msg);

@@ -32,6 +32,7 @@
 <video playsinline autoplay muted loop id="bgvid">
     <source src="resources/video/ocean.mp4" type="video/mp4">
 </video>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

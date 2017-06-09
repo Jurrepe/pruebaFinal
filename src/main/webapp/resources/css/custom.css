@@ -43,3 +43,17 @@ video#bgvid {
 .logo {
 	width: 80%;
 }
+
+.logoHeader {
+	height: 50px;
+	float:right;
+}
+
+.center {
+	width:75%;
+	margin: 0 auto;
+}
+
+.titulo {
+	text-align: center;
+}
