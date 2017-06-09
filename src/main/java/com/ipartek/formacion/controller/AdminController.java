@@ -46,7 +46,7 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value = "curso/crear", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/curso/crear", method = RequestMethod.POST)
 	public String crear(Model model,@Valid Curso c, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
@@ -66,7 +66,7 @@ public class AdminController {
 	}
 
 
-	@RequestMapping(value = "curso/eliminar", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/curso/eliminar", method = RequestMethod.POST)
 	public String eliminar(Model model, Curso u) {
 		String msg = "Error al eliminar el curso";
 		if (this.serviceCurso.eliminar(u.getId())) {

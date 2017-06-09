@@ -1,14 +1,16 @@
-</pre>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link href="resources/css/custom.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<title>Te has equivocado de sitio, forastero</title>
 </head>
-<body>
-No puedes acceder el recurso esta protegido por favor accede via <a href="formularioLogin.jsp">Login</a>
+<body id="error">
+<div class="msgError">
+Datos incorrectos <strong>forastero</strong>.<br> Si te has equivocado puedes volver a intentarlo <a href="formularioLogin.jsp">aquí</a>.
+</div>
 </body>
 </html>
-<pre>

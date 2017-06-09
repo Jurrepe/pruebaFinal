@@ -9,7 +9,7 @@
 				<p class="alert alert-success" role="alert">${msg}</p>
 			</c:if>
 			<h2>CRUD Cursos</h2>
-			<form:form action="curso/crear" modelAttribute="curso">
+			<form:form action="admin/curso/crear" modelAttribute="curso">
 				<label>Id:</label>
 				<form:input class="form-control" path="id" readonly="true"/><br>
 				<label>Nombre:</label>
@@ -28,7 +28,7 @@
 				</c:choose>
 			</form:form>
 			
-			<form:form action="curso/eliminar" modelAttribute="curso">
+			<form:form action="admin/curso/eliminar" modelAttribute="curso">
 				<form:hidden path="id"/>
 				<form:button type="submit" class="btn btn-danger">Eliminar</form:button>
 			</form:form>

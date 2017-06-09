@@ -14,6 +14,7 @@
 							<th>Id</th>
 							<th>Nombre</th>
 							<th>Codigo curso</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -22,6 +23,7 @@
 							<td>${c.id}</td>
 							<td><a href="admin/curso/edit/${c.id}">${c.nombre}</a></td>
 							<td>${c.cod}</td> 
+							<td><a href="admin/curso/edit/${c.id}"><span class="glyphicon glyphicon-pencil"></span></a> <a href="admin/curso/edit/${c.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
 						</tr>		
 						</c:forEach>
 					</tbody>	

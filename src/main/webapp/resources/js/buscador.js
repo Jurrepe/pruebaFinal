@@ -18,8 +18,8 @@ $(function() {
           dataType: "json",
           success: function( data ) {
         	var aString = [];
-            $.each(data, function(index, rec){
-            	aString.push({"label":rec.nombre, "value":rec.id});
+            $.each(data, function(index, cur){
+            	aString.push({"label":cur.nombre, "value":cur.id});
         	});
             response( aString );
           }

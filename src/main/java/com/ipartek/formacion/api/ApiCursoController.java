@@ -24,7 +24,7 @@ public class ApiCursoController {
 			value="",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ArrayList<Curso> recuperarIngrediente(
+	public @ResponseBody ArrayList<Curso> buscarCursos(
 			@RequestParam(value = "filtro", required = true) String filtro)
 	{
 
