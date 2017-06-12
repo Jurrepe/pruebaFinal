@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.ipartek.formacion.domain.Curso;
 import com.ipartek.formacion.repository.DAOCurso;
 
-
+/**
+ * Servicio del curso
+ * @author Curso
+ *
+ */
 @Service(value = "serviceCurso")
 public class ServiceCursoImpl implements ServiceCurso {
 
@@ -48,5 +52,10 @@ public class ServiceCursoImpl implements ServiceCurso {
 	@Override()
 	public boolean eliminar(long id) {
 		return this.daoCurso.delete(id);
+	}
+	
+	@Override()
+	public int contar() {
+		return this.daoCurso.count();
 	}
 }

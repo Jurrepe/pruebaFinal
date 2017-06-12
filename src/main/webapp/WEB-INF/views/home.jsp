@@ -10,12 +10,17 @@
        </div>
 
 <br><br>
-<h3>Ultimos cursos</h3>
-<ul class="list-group">
-<c:forEach items="${cursos}" var="c">
-	<li class="list-group-item">
-		<a href="view/${c.id}">${c.nombre}</a> <span class="badge">${c.cod}</span> 
-	</li>	
-</c:forEach>
-</ul>
+<c:if test="${not empty cursos}">
+	<h2>Ultimos cursos</h2>
+	<ul class="list-group">
+	<c:forEach items="${cursos}" var="c">
+		<li class="list-group-item">
+			<a href="view/${c.id}"><strong>${c.nombre}</strong></a> <span class="badge">${c.cod}</span> 
+		</li>	
+	</c:forEach>
+	</ul>
+</c:if>
+<c:if test="${empty cursos}">
+	<p class="errorLista">No hay ningún curso</p>
+</c:if>
 <%@ include file="includes/footer.jsp" %>

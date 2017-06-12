@@ -26,7 +26,7 @@ import com.ipartek.formacion.repository.mapper.CursoMapper;
 @Repository(value = "daoCurso")
 public class DAOCursoImpl implements DAOCurso{
 
-	private final Log logger = LogFactory.getLog(getClass());
+	private final Log LOG = LogFactory.getLog(getClass());
 	
 	@Autowired()
 	private DataSource dataSource;
@@ -45,8 +45,22 @@ public class DAOCursoImpl implements DAOCurso{
 	private static final String SQL_UPDATE = "UPDATE `curso` SET `nom_curso`= ?, `cod_curso`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `curso` WHERE `id` = ?;";
 	private static final String SQL_GET_LAST_10 = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` ORDER BY `id` DESC LIMIT 10;";
+	private static final String SQL_COUNT = "SELECT COUNT(id) as contador FROM CURSO;";
 	
 	private static final String SQL_SEARCH = "SELECT `id`, `nom_curso`, `cod_curso` FROM `curso` WHERE nom_curso LIKE ? OR cod_curso LIKE ?  LIMIT 500;";
+	
+	@Override()
+	public int count() {
+		Integer cont = 0;
+		try {
+			cont =  this.jdbcTemplate.queryForInt(SQL_COUNT);
+		} catch (EmptyResultDataAccessException e) {
+			this.LOG.warn("No existen cursos todavia");
+		} catch (Exception e) {
+			this.LOG.error(e.getMessage());
+		}
+		return cont;
+	}
 	
 	@Override()
 	public List<Curso> getAll() {
@@ -54,9 +68,9 @@ public class DAOCursoImpl implements DAOCurso{
 		try {
 			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_GET_ALL, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen cursos todavia");
+			this.LOG.warn("No existen cursos todavia");
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return lista;
 	}
@@ -67,9 +81,9 @@ public class DAOCursoImpl implements DAOCurso{
 		try {
 			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_GET_LAST_10, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen cursos todavia");
+			this.LOG.warn("No existen cursos todavia");
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return lista;
 	}
@@ -81,9 +95,9 @@ public class DAOCursoImpl implements DAOCurso{
 		try {
 			lista = (ArrayList<Curso>) this.jdbcTemplate.query(SQL_SEARCH, new Object[] { value , value }, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen cursos todavia");
+			this.LOG.warn("No existen cursos todavia");
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return lista;
 	}
@@ -94,9 +108,9 @@ public class DAOCursoImpl implements DAOCurso{
 		try {
 			c = this.jdbcTemplate.queryForObject(SQL_GET_BY_ID, new Object[] { id }, new CursoMapper());
 		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existe el curso");
+			this.LOG.warn("No existe el curso");
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 
 		return c;
@@ -125,7 +139,7 @@ public class DAOCursoImpl implements DAOCurso{
 			}
 
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return resul;
 	}
@@ -141,7 +155,7 @@ public class DAOCursoImpl implements DAOCurso{
 				resul = true;
 			}
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return resul;
 	}
@@ -155,9 +169,9 @@ public class DAOCursoImpl implements DAOCurso{
 				resul = true;
 			}
 		} catch (DataIntegrityViolationException e) {
-			this.logger.warn(e.getMessage());
+			this.LOG.warn(e.getMessage());
 		} catch (Exception e) {
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 		}
 		return resul;
 	}

@@ -6,6 +6,7 @@
 <html lang="es">
 
 <head>
+<title>Gestión cursos</title>
 <base href="/formacion/">
 <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">

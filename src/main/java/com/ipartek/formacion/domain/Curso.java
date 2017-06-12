@@ -6,10 +6,10 @@ import javax.validation.constraints.Size;
 public class Curso {
 	long id;
     @NotNull
-    @Size(message="Debe de tener entre {min} y {max} caracteres",min=2, max=255)
+    @Size(message="Debe de tener entre {min} y {max} caracteres",min=3, max=255)
 	String nombre;
     @NotNull
-    @Size(message="Debe de tener entre {min} y {max} caracteres",min=2, max=50)
+    @Size(message="Debe de tener entre {min} y {max} caracteres",min=3, max=50)
 	String cod;
 	public Curso() {
 		super();

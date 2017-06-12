@@ -24,4 +24,6 @@ public interface DAOCurso {
 
 	List<Curso> search(String value);
 
+	int count();
+
 }

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ipartek.formacion.service.ServiceCurso;
 
 /**
- * Handles requests for the application home page.
+ * Pagina principal
+ * @author Curso
+ *
  */
-@Controller
+@Controller()
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -27,7 +29,10 @@ public class HomeController {
 	private ServiceCurso serviceCurso;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Controlador vista principal
+	 * @param locale
+	 * @param model
+	 * @return home
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -37,6 +42,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	/**
+	 * Controlador vista detalle no editable
+	 * @param id
+	 * @param model
+	 * @return vista detalle
+	 */
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
 	public String irFormularioEditar(@PathVariable int id, Model model) {
 

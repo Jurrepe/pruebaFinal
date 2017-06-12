@@ -157,7 +157,20 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>${mysql.version}</version>
 		</dependency>
-	
+		
+		<!-- CSV 
+		<dependency>
+		    <groupId>net.sf.supercsv</groupId>
+		    <artifactId>super-csv</artifactId>
+		    <version>2.4.0</version>
+		</dependency>-->
+		
+		<dependency>
+		   <groupId>com.opencsv</groupId>
+		   <artifactId>opencsv</artifactId>
+		   <version>3.9</version>
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

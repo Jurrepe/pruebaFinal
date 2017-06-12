@@ -20,5 +20,7 @@ public interface ServiceCurso {
 
 	List<Curso> buscar(String valor);
 
+	int contar();
+
 
 }

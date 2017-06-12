@@ -23,7 +23,8 @@
 					</c:when>
 					<c:otherwise>
 						<form:button type="submit" class="btn btn-primary margin1">Modificar</form:button>
-						<span><a href="admin/curso/eliminar/${curso.id}" class="btn btn-danger">Eliminar</a></span>
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-eliminar"> Eliminar </button>
+						
 					</c:otherwise>
 				</c:choose>
 				
@@ -32,4 +33,21 @@
 		<div class="col-md-3"></div>
 	</div>
 </div>
+
+<!-- Modal Eliminar -->
+<div id="modal-eliminar" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>¿Desea eliminar el curso <b>${curso.nombre}</b>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <span><a href="admin/curso/eliminar/${curso.id}" class="btn btn-danger">Si</a></span>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- End Modal Eliminar -->
+
 <%@ include file="../includes/footer.jsp" %>
