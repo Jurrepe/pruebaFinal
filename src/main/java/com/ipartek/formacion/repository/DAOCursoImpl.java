@@ -23,6 +23,11 @@ import org.springframework.stereotype.Repository;
 import com.ipartek.formacion.domain.Curso;
 import com.ipartek.formacion.repository.mapper.CursoMapper;
 
+/**
+ * Implementacion del DAO
+ * @author Curso
+ *
+ */
 @Repository(value = "daoCurso")
 public class DAOCursoImpl implements DAOCurso{
 

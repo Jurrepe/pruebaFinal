@@ -23,35 +23,32 @@ import com.ipartek.formacion.service.ServiceCurso;
 @Controller()
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	@Autowired()
 	private ServiceCurso serviceCurso;
 	
 	/**
 	 * Controlador vista principal
-	 * @param locale
-	 * @param model
+	 * @param model modelo
 	 * @return home
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Model model) {
 		
-		model.addAttribute("cursos", serviceCurso.listarUltimos());
+		model.addAttribute("cursos", this.serviceCurso.listarUltimos());
 		
 		return "home";
 	}
 	
 	/**
 	 * Controlador vista detalle no editable
-	 * @param id
-	 * @param model
+	 * @param id curso
+	 * @param model modelo
 	 * @return vista detalle
 	 */
 	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String irFormularioEditar(@PathVariable int id, Model model) {
+	public String irFormularioEditar(@PathVariable() int id, Model model) {
 
-		model.addAttribute("curso", serviceCurso.buscarPorId(id));
+		model.addAttribute("curso", this.serviceCurso.buscarPorId(id));
 		return "view";
 	}
 

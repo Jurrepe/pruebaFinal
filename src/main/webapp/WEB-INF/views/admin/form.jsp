@@ -10,13 +10,13 @@
 			</c:if>
 			<h2>CRUD Cursos</h2>
 			<form:form action="admin/curso/crear" modelAttribute="curso">
-				<label>Id:</label>
-				<form:input class="form-control" path="id" readonly="true"/><br>
-				<label>Nombre:</label> <form:errors path="nombre" cssStyle="color:red;"/>
-				<form:input class="form-control" path="nombre"/><br>
+				<label for="id">Id:</label>
+				<form:input type="text" id="id" class="form-control" path="id" readonly="true"/><br>
+				<label for="nombre">Nombre:</label> <form:errors path="nombre" cssStyle="color:red;"/>
+				<form:input type="text" id="nombre" class="form-control" path="nombre"/><br>
 	
-				<label>Código:</label> <form:errors path="cod" cssStyle="color:red;"/>
-				<form:input class="form-control" path="cod"/><br>
+				<label for="codigo">Código:</label> <form:errors path="cod" cssStyle="color:red;"/>
+				<form:input type="text" id="codigo" class="form-control" path="cod"/><br>
 				<c:choose>
 					<c:when test="${curso.id == -1}">
 						<form:button type="submit" class="btn btn-primary margin1">Crear</form:button>
@@ -39,7 +39,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p>¿Desea eliminar el curso <b>${curso.nombre}</b>?</p>
+        <p>¿Desea eliminar el curso <strong>${curso.nombre}</strong>?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>

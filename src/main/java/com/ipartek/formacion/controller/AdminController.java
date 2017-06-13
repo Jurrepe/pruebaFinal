@@ -28,25 +28,27 @@ import com.opencsv.CSVReader;
 @Controller()
 public class AdminController {
 
+	private static final int COD_CURSO = 8;
+	
 	@Autowired()
 	private ServiceCurso serviceCurso;
 	
 	/**
 	 * Pagina principal
-	 * @param model
+	 * @param model modelo
 	 * @return pagina principal
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String listar(Model model) {
 
-		model.addAttribute("cursos",serviceCurso.listar());
-		model.addAttribute("total",serviceCurso.contar());
+		model.addAttribute("cursos",this.serviceCurso.listar());
+		model.addAttribute("total",this.serviceCurso.contar());
 		return "/admin/index";
 	}
 	
 	/**
 	 * Pagina migracion
-	 * @param model
+	 * @param model modelo
 	 * @return pagina migracion
 	 */
 	@RequestMapping(value = "/admin/curso/migracion", method = RequestMethod.GET)
@@ -57,7 +59,7 @@ public class AdminController {
 
 	/**
 	 * Migra los datos a la SQL
-	 * @param model
+	 * @param model modelo
 	 * @return pagina migracion con mensaje
 	 */
 	@RequestMapping(value = "/admin/curso/migrar", method = RequestMethod.GET)
@@ -72,11 +74,11 @@ public class AdminController {
             Curso curso = new Curso();
             int contador = 0;
             while ((nextLine = reader.readNext()) != null) {
-               System.out.println(nextLine[1] + nextLine[8] );
+               System.out.println(nextLine[1] + nextLine[COD_CURSO] );
                curso.setNombre(nextLine[1]);
-               curso.setCod(nextLine[8]);
+               curso.setCod(nextLine[COD_CURSO]);
                if (!"".equals(curso.getNombre()) && !"".equals(curso.getCod())) {
-            	   serviceCurso.crear(curso);
+            	   this.serviceCurso.crear(curso);
             	   contador++;
                }
             }
@@ -96,7 +98,7 @@ public class AdminController {
 	
 	/**
 	 * Vista edicion de un curso
-	 * @param model
+	 * @param model modelo
 	 * @return vista editar
 	 */
 	@RequestMapping(value = "/admin/curso/edit", method = RequestMethod.GET)
@@ -108,8 +110,8 @@ public class AdminController {
 
 	/**
 	 * Vista edicion de un curso especifico
-	 * @param model
-	 * @param id
+	 * @param model modelo
+	 * @param id curso
 	 * @return detalles de un curso especifico
 	 */
 	@RequestMapping(value = "/admin/curso/edit/{id}", method = RequestMethod.GET)
@@ -121,13 +123,13 @@ public class AdminController {
 
 	/**
 	 * Inserta un curso
-	 * @param model
-	 * @param c
-	 * @param bindingResult
+	 * @param model modelo
+	 * @param c clase curso
+	 * @param bindingResult validador
 	 * @return pagina de inicio del admin con msg
 	 */
 	@RequestMapping(value = "/admin/curso/crear", method = RequestMethod.POST)
-	public String crear(Model model,@Valid Curso c, BindingResult bindingResult) {
+	public String crear(Model model,@Valid() Curso c, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
             return "admin/form";
@@ -142,14 +144,14 @@ public class AdminController {
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("cursos", this.serviceCurso.listar());
-		model.addAttribute("total",serviceCurso.contar());
+		model.addAttribute("total",this.serviceCurso.contar());
 		return "admin/index";
 	}
 
 	/**
 	 * Eliminar un curso
-	 * @param model
-	 * @param id
+	 * @param model modelo
+	 * @param id id curso
 	 * @return pagina de inicio del admin con msg
 	 */
 	@RequestMapping(value = "/admin/curso/eliminar/{id}", method = RequestMethod.GET)
@@ -161,7 +163,7 @@ public class AdminController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("curso", new Curso());
 		model.addAttribute("cursos", this.serviceCurso.listar());
-		model.addAttribute("total",serviceCurso.contar());
+		model.addAttribute("total",this.serviceCurso.contar());
 		return "admin/index";
 	}
 	

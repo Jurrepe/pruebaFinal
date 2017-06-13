@@ -14,37 +14,42 @@
 		    <a href="admin/curso/migracion" class="btn btn-info">Migrar CSV</a>
 			<a href="admin/curso/edit" class="btn btn-default">Crear nuevo curso</a>
 			<br><br>
-			<c:choose>
-					<c:when test="${total > 500}">
-						<p>Mostrando los ultimos <strong>500</strong> cursos de un total de <strong>${total}</strong> cursos.</p>
-					</c:when>
-					<c:otherwise>
-						<p>Mostrando <strong>${total}</strong> cursos.</p>
-					</c:otherwise>
-			</c:choose>
-			<div class="col-md-12 tablaCursos">
-				<h2>Listado cursos</h2>
-				<table class="tablePlugin" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Nombre</th>
-							<th>Codigo curso</th>
-							<th>Eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${cursos}" var="c">
-						<tr>
-							<td>${c.id}</td>
-							<td><a href="admin/curso/edit/${c.id}">${c.nombre}</a><a href="admin/curso/edit/${c.id}"><img class="mini-img derecha" src="resources/img/pensil.png" title="Editar" alt="Boton de editar"></a></td>
-							<td>${c.cod}</td> 
-							<td><a href="admin/curso/eliminar/${c.id}"><img class="mini-img" src="resources/img/delete.png" title="Eliminar" alt="Boton de eliminar"></a></td>
-						</tr>		
-						</c:forEach>
-					</tbody>	
-				</table>
-			</div>
+			<c:if test="${not empty cursos}">
+				<c:choose>
+						<c:when test="${total > 500}">
+							<p>Mostrando los ultimos <strong>500</strong> cursos de un total de <strong>${total}</strong> cursos.</p>
+						</c:when>
+						<c:otherwise>
+							<p>Mostrando <strong>${total}</strong> cursos.</p>
+						</c:otherwise>
+				</c:choose>
+				<div class="col-md-12 tablaCursos">
+					<h2>Listado cursos</h2>
+					<table class="tablePlugin" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Codigo curso</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${cursos}" var="c">
+							<tr>
+								<td>${c.id}</td>
+								<td><a href="admin/curso/edit/${c.id}">${c.nombre}</a><a href="admin/curso/edit/${c.id}"><img class="mini-img derecha" src="resources/img/pensil.png" title="Editar" alt="Boton de editar"></a></td>
+								<td>${c.cod}</td> 
+								<td><a href="admin/curso/eliminar/${c.id}"><img class="mini-img" src="resources/img/delete.png" title="Eliminar" alt="Boton de eliminar"></a></td>
+							</tr>		
+							</c:forEach>
+						</tbody>	
+					</table>
+				</div>
+			</c:if>
+			<c:if test="${empty cursos}">
+				<p class="errorLista">No hay ningún curso</p>
+			</c:if>
 		</div>
 	</div>
 		

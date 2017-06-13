@@ -19,7 +19,7 @@ $(function() {
           success: function( data ) {
         	var aString = [];
             $.each(data, function(index, cur){
-            	aString.push({"label":cur.nombre, "value":cur.id});
+            	aString.push({"label": cur.nombre, "value":cur.id});
         	});
             response( aString );
           }

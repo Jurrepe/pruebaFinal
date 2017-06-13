@@ -27,7 +27,7 @@ public class ApiCursoController {
 	
 	/**Filtra la lista de los resultados
 	 * 
-	 * @param filtro
+	 * @param filtro de busqueda
 	 * @return Array de cursos del resultado de la busqueda
 	 */
 	@RequestMapping(
