@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.ipartek.formacion.domain.Curso;
 import com.ipartek.formacion.service.ServiceCurso;
@@ -36,13 +38,16 @@ public class AdminController {
 	/**
 	 * Pagina principal
 	 * @param model modelo
+	 * @param msg mensaje
 	 * @return pagina principal
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String listar(Model model) {
-
+	public String listar(Model model, @RequestParam(value="msg", required=false) String msg) {
+		
+		model.addAttribute("msg", msg);
 		model.addAttribute("cursos",this.serviceCurso.listar());
 		model.addAttribute("total",this.serviceCurso.contar());
+		
 		return "/admin/index";
 	}
 	
@@ -145,7 +150,7 @@ public class AdminController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("cursos", this.serviceCurso.listar());
 		model.addAttribute("total",this.serviceCurso.contar());
-		return "admin/index";
+		return "redirect: ../../admin";
 	}
 
 	/**

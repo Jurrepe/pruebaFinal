@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `nom_curso` varchar(255) NOT NULL DEFAULT '0',
   `cod_curso` varchar(50) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=885 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
